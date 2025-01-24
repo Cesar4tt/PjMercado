@@ -139,7 +139,7 @@ namespace ProjetoMercado
                 //try catch para pegar os erros e exibe a mensagem.
                 MessageBox.Show("Erro ao tentar fazer login: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //teste
+            //teste pedro
         }
     
     }
