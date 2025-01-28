@@ -63,4 +63,40 @@ public class InteracoesBD
             return cargo;
         }
     }
+    // Função para cadastrar produtos no BD, a partir da tela de cadastro (somente adm)
+    public bool CadastroProduto(string descricao, string codBarras, string marca, string valor, string dataSource)
+    {
+        try
+        {
+            int RowAffect = 0;
+            string sql;
+
+            MySqlConnection conexao = new MySqlConnection(dataSource);
+            MySqlCommand comando = new MySqlCommand();
+
+            if (codBarras == "" || marca == "" || valor == "" || descricao == "")
+                return false;
+
+            sql = "INSERT INTO Produtos (Marca, Preco, Codigo, Descricao) VALUES ('" + marca + "', '" + valor + "', '" + codBarras + "', '" + descricao + "' )";
+            conexao.Open();
+            comando.Connection = conexao;
+            comando.CommandText = sql;
+
+            RowAffect = comando.ExecuteNonQuery();
+            conexao.Close();
+
+            if (RowAffect == 1)
+                return true;
+            else
+                return false;
+
+        }
+        catch
+        {
+            MessageBox.Show("Erro na conexão com o Banco de Dados");
+            return false;
+        }
+    }
+    //Bugre
 }
+

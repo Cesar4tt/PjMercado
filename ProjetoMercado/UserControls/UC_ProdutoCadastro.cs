@@ -222,50 +222,32 @@ namespace ProjetoMercado.UserControls
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            try
+            // Verificar se os campos estão vazios
+            if (txtCodigo.Text == "" || txtMarca.Text == "" || txtValor.Text == "" || txtDescricao.Text == "")
             {
-                int RowAffect = 0;
-                string sql;
-
-                MySqlConnection conexao = new MySqlConnection(dataSource);
-                MySqlCommand comando = new MySqlCommand();
-
-
-                if (txtCodigo.Text == "" || txtMarca.Text == "" || txtValor.Text == "" || txtDescricao.Text == "")
-                {
-                    MessageBox.Show("Preencha os campos obrigatórios.");
-                    return;
-                }
-
-                sql = "INSERT INTO Produtos (Marca, Preco, Codigo, Descricao) VALUES ('" + txtMarca.Text + "', '" + txtValor.Text + "', '" + txtCodigo.Text + "', '" + txtDescricao.Text + "' )";
-                conexao.Open();
-                comando.Connection = conexao;
-                comando.CommandText = sql;
-
-                RowAffect = comando.ExecuteNonQuery();
-
-                if (RowAffect == 1)
-                {
-                    MessageBox.Show("Cadastro realizado com sucesso!", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Limpar();
-                    Carregar_Produto();
-                }
-                else
-                {
-                    MessageBox.Show("Cadastro não realizado!", "Aviso",
-                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                conexao.Close();
-
-            }
-            catch
-            {
-                MessageBox.Show("Erro ao adicionar os dados: ");
+                MessageBox.Show("Preencha os campos obrigatórios.");
+                return;
             }
 
+            // Executa o cadastro no Banco de Dados
+            bool resultadoExecucao = InteracoesBD.InstanciaPublica().CadastroProduto(txtDescricao.Text,
+                txtCodigo.Text, txtMarca.Text, txtValor.Text, dataSource);
+
+            // Verifica se o cadastro deu certo ou não (true ou false)
+            if (resultadoExecucao == true)
+            {
+                MessageBox.Show("Cadastro realizado com sucesso!", "Aviso",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpar();
+                Carregar_Produto();
+            }
+            else
+            {
+                MessageBox.Show("Cadastro não realizado!", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
-
+    
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
 
