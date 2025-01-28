@@ -88,60 +88,23 @@ namespace ProjetoMercado
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            try
+            string resultadoLogin = InteracoesBD.InstanciaPublica().LoginUsuario(txtEmail.Text, txtSenha.Text);
+
+            if (resultadoLogin == "nenhum")
             {
-                string sql;
-
-                /* Codigo abaixo cria uma conexão com o banco de dados e prepara o comando SQL para verificar o cargo do funcionário 
-                 com base no login (txtEmail.Text) e senha (txtSenha.Text) fornecidos no formulário.*/
-
-                MySqlConnection conexao = new MySqlConnection("Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
-                MySqlCommand comando = new MySqlCommand();
-
-                MySqlDataReader dr;
-
-                //Consulta SQL para buscar o cargo do funcionário baseado no login e senha fornecidos.
-                sql = "SELECT Cargo FROM Funcionarios  WHERE Login = " + "'" + txtEmail.Text + "' AND Senha = '" + txtSenha.Text + "'" + ";";
-
-                comando = conexao.CreateCommand();
-
-                conexao.Open(); //Abre conexao com banco
-                comando.CommandText = sql;
-
-                dr = comando.ExecuteReader();  // faz a consulta e armazena o resultado no DataReader.
-
-                if (dr.Read())// Verifica se a consulta retornou algum resultado.
-                {
-                    variaveisGlobais.Cargo = dr.GetString(0); // Lê o cargo do funcionário e armazena na variável global.
-
-                    if (variaveisGlobais.Cargo == "Caixa" || variaveisGlobais.Cargo == "Supervisor") //verifica qual Cargo está fazendo login
-                    {
-
-                        frmMercado Mercado = new frmMercado(); // se for "Supervisor" ele tem acesso a tudo do sistema.
-                                                               //Se for "Caixa" ele vai ter restrição em algumas coisas
-                        Mercado.Show();
-                        this.Hide();
-                    }
-                }
-                else
-                {
-                    //Se login e senha estiver errado. Aparace mensagem de erro.
-                    MessageBox.Show("Login ou Senha Incorretos! Tente Novamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtEmail.Clear();
-                    txtSenha.Clear();
-                    txtEmail.Focus();
-                }
-
-                conexao.Close(); //fechar conexao com banco
+                //Se login e senha estiver errado. Aparace mensagem de erro.
+                MessageBox.Show("Login ou Senha Incorretos! Tente Novamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtEmail.Clear();
+                txtSenha.Clear();
+                txtEmail.Focus();
             }
-            catch (Exception ex)
+            else if (resultadoLogin == "Caixa" || resultadoLogin == "Supervisor")
             {
-                //try catch para pegar os erros e exibe a mensagem.
-                MessageBox.Show("Erro ao tentar fazer login: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                frmMercado Mercado = new frmMercado(); // se for "Supervisor" ele tem acesso a tudo do sistema.
+                                                       //Se for "Caixa" ele vai ter restrição em algumas coisas
+                Mercado.Show();
+                this.Hide();
             }
-            //teste pedro
         }
-    
     }
 }
-    
