@@ -97,6 +97,66 @@ public class InteracoesBD
             return false;
         }
     }
-    //Bugre
+
+
+    public string CaixaProduto(string CodigoBarras)
+
+    {
+        string produto = "Vazio";
+
+        
+
+            //string produto = "Vazio";
+
+
+            // string CodigoBarras;
+            //int quantindade = int.Parse(quantidade);
+            // double resultado;
+            // double somaItem;
+
+            // Esse Código faz a conexão com o banco de Dados
+            MySqlConnection conexao = new MySqlConnection("Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
+            MySqlCommand comando = new MySqlCommand();
+
+            MySqlDataReader dr;
+
+            // Esse Código faz a busca dos produtos e joga na list view a partir do codigo que o usuario digitar na text box
+            CodigoBarras = "SELECT * FROM Produtos  WHERE Codigo = " + "'" + CodigoBarras + "'" + ";";
+       
+            comando = conexao.CreateCommand();
+
+            conexao.Open();
+            comando.CommandText = CodigoBarras;
+
+            dr = comando.ExecuteReader();
+        string caixa = CodigoBarras;
+
+        if (dr.Read())
+            {
+
+                CodigoBarras = dr.GetString(3);
+                return caixa;
+              
+
+            }
+
+            else
+            {
+                return produto;
+            }
+       
+
+        
+
+      
+       
+                
+            
+
+          
+
+
+
+    }
 }
 
