@@ -63,4 +63,9 @@ public class InteracoesBD
             return cargo;
         }
     }
+
+    //Teste de Validação do Campo Nome
+
+    public string  AdicionarFuncionario (string txtNomeCompleto, string mskdCPF)
+
 }

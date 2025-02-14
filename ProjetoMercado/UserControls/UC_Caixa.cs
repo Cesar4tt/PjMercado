@@ -199,6 +199,7 @@ namespace ProjetoMercado.UserControls
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            /*
 
             //try
             //{
@@ -271,7 +272,10 @@ namespace ProjetoMercado.UserControls
                 txtCodigo.Focus();
             }
 
+            */
         }
+
+        
             
         
 
