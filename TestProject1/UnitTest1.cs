@@ -27,6 +27,7 @@ namespace TestProject1
       
         }
 
+        [TestMethod]
         public void TestesBuscaProduto()
         {
             string descricaoTeste;
@@ -44,13 +45,13 @@ namespace TestProject1
             string descricaoProduto = "Arroz Tradicional Camil 1kg";
             string marcaProduto = "Camil";
              codigoProduto = "00001";
-            string valor = "6.6";
+            double valor = 6.6;
 
 
             Assert.AreEqual(descricaoProduto, descricaoTeste); 
             Assert.AreEqual(marcaTeste, marcaProduto);
             Assert.AreEqual(codigoProduto, codigoProduto);
-            Assert.AreEqual(valor, valorTeste);
+            Assert.AreEqual(valor.ToString("C"), valorTeste);
 
             //Teste #02: Produto incorreto. 
             descricaoProduto = "Arroz Tradicional Camil 1kg";
