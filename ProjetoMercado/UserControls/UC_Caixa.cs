@@ -19,6 +19,9 @@ namespace ProjetoMercado.UserControls
     public partial class UC_Caixa : UserControl
     {
         double subtotal;
+
+        public object comando { get; private set; }
+
         public UC_Caixa()
         {
             InitializeComponent();
@@ -204,32 +207,33 @@ namespace ProjetoMercado.UserControls
             double resultado;
             double somaItem;
             string CodigoBarras;
-            
 
-               // Esse Código faz a conexão com o banco de Dados
-                MySqlConnection conexao = new MySqlConnection("Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
-              MySqlCommand comando = new MySqlCommand();
+
+            // Esse Código faz a conexão com o banco de Dados
+            //  MySqlConnection conexao = new MySqlConnection("Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
+            // MySqlCommand comando = new MySqlCommand();
 
             MySqlDataReader dr;
 
-             //Esse Código faz a busca dos produtos e joga na list view a partir do codigo que o usuario digitar na text box
-                CodigoBarras = "SELECT * FROM Produtos  WHERE Codigo = " + "'" + txtCodigo.Text + "'" + ";";
+            //Esse Código faz a busca dos produtos e joga na list view a partir do codigo que o usuario digitar na text box
+            ////      CodigoBarras = "SELECT * FROM Produtos  WHERE Codigo = " + "'" + txtCodigo.Text + "'" + ";";
 
-          comando = conexao.CreateCommand();
+            //comando = conexao.CreateCommand();
 
-               conexao.Open();
-                comando.CommandText = CodigoBarras;
-
-          
-           dr = comando.ExecuteReader();
-
-            while (dr.Read())
-               {
-                  CodigoBarras = dr.GetString(3);
-
-                }
+            ////     conexao.Open();
+            ////      comando.CommandText = CodigoBarras;
 
 
+            // dr = comando.ExecuteReader();
+
+            ////  while (dr.Read())
+            ////     {
+            CodigoBarras = BuscarProduto;
+
+            ////      }
+
+            string BuscarProduto = InteracoesBD.InstanciaPublica().CaixaProduto(txtCodigo.Text);
+            
 
             if (txtCodigo.ToString() == "")
             {
@@ -242,7 +246,7 @@ namespace ProjetoMercado.UserControls
 
             else
             {
-                string BuscarProduto = InteracoesBD.InstanciaPublica().CaixaProduto(txtCodigo.Text);
+                //string BuscarProduto = InteracoesBD.InstanciaPublica().CaixaProduto(txtCodigo.Text);
 
                 ListViewItem item = new ListViewItem(dr.GetString(1));
 

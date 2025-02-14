@@ -129,7 +129,7 @@ public class InteracoesBD
             comando.CommandText = CodigoBarras;
 
             dr = comando.ExecuteReader();
-        string caixa = CodigoBarras;
+        string caixa = dr.GetString(3);
 
         if (dr.Read())
             {
