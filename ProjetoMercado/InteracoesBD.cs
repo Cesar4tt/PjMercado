@@ -99,38 +99,55 @@ public class InteracoesBD
     }
 
 
-    public bool ValidarCodigo(string CodigoBarras )
-
+    public bool LerProduto(string codBarras, string dataSource, out string descricaoProduto, out string marcaProduto, out string codigoProduto, out string valor)
     {
+        descricaoProduto = "";
+        marcaProduto = "";
+        codigoProduto = "";
+        valor = "";
 
-
-            // Esse Código faz a conexão com o banco de Dados
-            MySqlConnection conexao = new MySqlConnection("Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
-            MySqlCommand comando = new MySqlCommand();
-
+        try
+        {
             MySqlDataReader dr;
 
-            // Esse Código faz a busca dos produtos e joga na list view a partir do codigo que o usuario digitar na text box
-            string sql = "SELECT * FROM Produtos  WHERE Codigo = " + "'" + CodigoBarras + "'" + ";";
-       
-            comando = conexao.CreateCommand();
+            MySqlCommand comando = new MySqlCommand();
+            MySqlConnection conexao = new MySqlConnection(dataSource);
 
+            string sql;
+
+            sql = "SELECT * FROM Produtos WHERE Codigo = " + "'" + codBarras + "'" + ";";
+
+            //MessageBox.Show(sql);
+            //Carregar_Produto();
             conexao.Open();
+            comando.Connection = conexao;
             comando.CommandText = sql;
 
             dr = comando.ExecuteReader();
+            MessageBox.Show(dataSource);
 
-        string caixa = dr.GetString(3);
-
-        if (dr.Read())
+            while (dr.Read())
             {
-                return true;
+                marcaProduto = dr.GetString(1);
+                valor = dr.GetDouble(2).ToString("C");
+                codigoProduto = dr.GetString(3);
+                descricaoProduto = dr.GetString(4);
+
+                MessageBox.Show(marcaProduto + valor + codigoProduto + descricaoProduto);
             }
-        else
-            {
-                return false;
-            } 
 
+            conexao.Close();
+
+            if (marcaProduto.ToString() == "" && valor.ToString() == "" && codigoProduto.ToString() == "" && descricaoProduto.ToString() == "")
+                return false;
+            else return true;
+        }
+
+        catch
+        {
+            MessageBox.Show("Erro ao buscar  os dados, certifique-se de preencher os campos corretamente");
+            return false;
+        }
     }
 }
 
