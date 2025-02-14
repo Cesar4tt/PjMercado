@@ -149,5 +149,56 @@ public class InteracoesBD
             return false;
         }
     }
+
+    public bool LerCodigo (string codigo , string dataSource , out string descricaoProduto, out string marcaProduto, out string codigoProduto, out string valor)
+    {
+        descricaoProduto = "";
+        marcaProduto = "";
+        codigoProduto = "";
+        valor = "";
+
+        //string CodigoBarras;
+       // int quantindade = int.Parse(quantindade);
+       // double resultado;
+        //double somaItem;
+
+
+        // Esse Código faz a conexão com o banco de Dados
+        MySqlConnection conexao = new MySqlConnection("Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
+        MySqlCommand comando = new MySqlCommand();
+
+        MySqlDataReader dr;
+
+        // Esse Código faz a busca dos produtos e joga na list view a partir do codigo que o usuario digitar na text box
+        codigoProduto = "SELECT * FROM Produtos  WHERE Codigo = " + "'" + codigo + "'" + ";";
+
+        comando = conexao.CreateCommand();
+
+
+        conexao.Open();
+        comando.CommandText = codigoProduto;
+
+        dr = comando.ExecuteReader();
+       // valor = dr.GetDouble(2).ToString("C");
+
+        while (dr.Read())
+        {
+            marcaProduto = dr.GetString(1);
+            valor = dr.GetDouble(2);
+            codigoProduto = dr.GetString(3);
+            descricaoProduto = dr.GetString(4);
+
+        }
+
+        if (codigo.ToString() == "")
+        {
+            return false;
+            
+        }
+        else
+        {
+            return true;
+        }
+    }
 }
 
