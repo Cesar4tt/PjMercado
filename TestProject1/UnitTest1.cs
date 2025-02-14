@@ -1,3 +1,6 @@
+using Microsoft.VisualBasic.Logging;
+using System.Text.RegularExpressions;
+
 namespace TestProject1
 {
     [TestClass]
@@ -44,11 +47,11 @@ namespace TestProject1
             // Teste #01: 
             string descricaoProduto = "Arroz Tradicional Camil 1kg";
             string marcaProduto = "Camil";
-             codigoProduto = "00001";
+            codigoProduto = "00001";
             double valor = 6.6;
 
 
-            Assert.AreEqual(descricaoProduto, descricaoTeste); 
+            Assert.AreEqual(descricaoProduto, descricaoTeste);
             Assert.AreEqual(marcaTeste, marcaProduto);
             Assert.AreEqual(codigoProduto, codigoProduto);
             Assert.AreEqual(valor.ToString("C"), valorTeste);
@@ -59,10 +62,36 @@ namespace TestProject1
 
             Assert.AreNotEqual(descricaoProduto, codigoProduto);
 
-
-
-
-
         }
+
+            [TestMethod]
+              public void TestesAdicionarProduto()
+              {
+              
+                string descricaoTeste;
+                string marcaTeste;
+                string codigoTeste;
+                string valorTeste;
+
+
+                string descricao = "Espoja Bob louça";
+                string marca = "Nickeloadeon";
+                string codigo = "00044";
+                string valor ="4.0";
+                int RowAffect = 1;
+
+
+                string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
+
+
+
+
+                Assert.IsTrue(InteracoesBD.InstanciaPublica().CadastroProduto(descricao, codigo, valor, marca, dataSource));
+               
+
+
+
+              }
+
     }
 }
