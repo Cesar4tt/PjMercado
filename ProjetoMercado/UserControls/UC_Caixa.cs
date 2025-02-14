@@ -206,7 +206,7 @@ namespace ProjetoMercado.UserControls
             int quantindade = int.Parse(txtQuantidade.Text);
             double resultado;
             double somaItem;
-            string CodigoBarras;
+          //  string CodigoBarras;
 
 
             // Esse Código faz a conexão com o banco de Dados
@@ -228,11 +228,11 @@ namespace ProjetoMercado.UserControls
 
             ////  while (dr.Read())
             ////     {
-            CodigoBarras = BuscarProduto;
+           // CodigoBarras = BuscarProduto;
 
             ////      }
 
-            string BuscarProduto = InteracoesBD.InstanciaPublica().CaixaProduto(txtCodigo.Text);
+            bool BuscarProduto = InteracoesBD.InstanciaPublica().ValidarCodigo(txtCodigo.Text, txtPagamento);
             
 
             if (txtCodigo.ToString() == "")

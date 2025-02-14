@@ -99,20 +99,10 @@ public class InteracoesBD
     }
 
 
-    public string CaixaProduto(string CodigoBarras)
+    public bool ValidarCodigo(string CodigoBarras )
 
     {
-        string produto = "Vazio";
 
-        
-
-            //string produto = "Vazio";
-
-
-            // string CodigoBarras;
-            //int quantindade = int.Parse(quantidade);
-            // double resultado;
-            // double somaItem;
 
             // Esse Código faz a conexão com o banco de Dados
             MySqlConnection conexao = new MySqlConnection("Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
@@ -121,41 +111,25 @@ public class InteracoesBD
             MySqlDataReader dr;
 
             // Esse Código faz a busca dos produtos e joga na list view a partir do codigo que o usuario digitar na text box
-            CodigoBarras = "SELECT * FROM Produtos  WHERE Codigo = " + "'" + CodigoBarras + "'" + ";";
+            string sql = "SELECT * FROM Produtos  WHERE Codigo = " + "'" + CodigoBarras + "'" + ";";
        
             comando = conexao.CreateCommand();
 
             conexao.Open();
-            comando.CommandText = CodigoBarras;
+            comando.CommandText = sql;
 
             dr = comando.ExecuteReader();
+
         string caixa = dr.GetString(3);
 
         if (dr.Read())
             {
-
-                CodigoBarras = dr.GetString(3);
-                return caixa;
-              
-
+                return true;
             }
-
-            else
+        else
             {
-                return produto;
-            }
-       
-
-        
-
-      
-       
-                
-            
-
-          
-
-
+                return false;
+            } 
 
     }
 }
