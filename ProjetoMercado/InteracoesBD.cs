@@ -97,6 +97,55 @@ public class InteracoesBD
             return false;
         }
     }
-    //Bugre
+    public bool LerProduto(string codBarras, string dataSource, out string descricaoProduto, out string marcaProduto, out string codigoProduto, out string valor) 
+    {
+        descricaoProduto = "";
+        marcaProduto = "";
+        codigoProduto = "";
+        valor = "";
+
+        try
+        {
+            MySqlDataReader dr;
+
+            MySqlCommand comando = new MySqlCommand();
+            MySqlConnection conexao = new MySqlConnection(dataSource);
+
+            string sql;
+
+            sql = "SELECT * FROM Produtos WHERE Codigo = " + "'" + codBarras + "'" + ";";
+
+            //MessageBox.Show(sql);
+            //Carregar_Produto();
+            conexao.Open();
+            comando.Connection = conexao;
+            comando.CommandText = sql;
+
+            dr = comando.ExecuteReader();
+            MessageBox.Show(dataSource);
+
+            while (dr.Read())
+            {
+                marcaProduto = dr.GetString(1);
+                valor = dr.GetDouble(2).ToString("C");
+                codigoProduto = dr.GetString(3);
+                descricaoProduto = dr.GetString(4);
+
+                MessageBox.Show(marcaProduto + valor + codigoProduto + descricaoProduto);
+            }
+
+            conexao.Close();
+
+            if (marcaProduto.ToString() == "" && valor.ToString() == "" && codigoProduto.ToString() == "" && descricaoProduto.ToString() == "")
+                return false;
+            else return true;
+        }
+
+        catch
+        {
+            MessageBox.Show("Erro ao buscar  os dados, certifique-se de preencher os campos corretamente");
+            return false;
+        }
+    }
 }
 

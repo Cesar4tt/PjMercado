@@ -18,6 +18,7 @@ namespace ProjetoMercado.UserControls
     {
         MySqlCommand comando = new MySqlCommand();
         string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
+
         MySqlConnection conexao;
 
         public UC_ProdutoCadastro()
@@ -285,55 +286,27 @@ namespace ProjetoMercado.UserControls
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            string descricaoProduto = "";
+            string marcaProduto = "";
+            string codigoProduto = "";
+            string valor = "";
 
-            try
+            //Carregar_Produto();
+
+            bool leuBD = InteracoesBD.InstanciaPublica().LerProduto(txtBuscarProduto.Text, dataSource, out descricaoProduto, out marcaProduto, out codigoProduto, out valor);
+            
+            if (leuBD)
             {
-                string descricaoProduto = "";
-                string marcaProduto = "";
-                string codigoProduto = "";
-                string valor = "";
-
-                MySqlDataReader dr;
-
-                MySqlCommand comando = new MySqlCommand();
-                MySqlConnection conexao = new MySqlConnection(dataSource);
-
-                string sql;
-
-                sql = "SELECT * FROM Produtos WHERE Codigo = " + "'" + txtBuscarProduto.Text + "'" + ";";
-                MessageBox.Show(sql);
-                Carregar_Produto();
-                conexao.Open();
-                comando.Connection = conexao;
-                comando.CommandText = sql;
-
-                dr = comando.ExecuteReader();
-
-                while (dr.Read())
-                {
-
-                    codigoProduto = dr.GetString(3);
-
-                }
-                if (marcaProduto.ToString() == "" && valor.ToString() == "" && codigoProduto.ToString() == "" && descricaoProduto.ToString() == "")
-                {
-                    MessageBox.Show("não foi possivel encontrar o produto!", "Aviso",
-                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtBuscarProduto.Focus();
-                }
-                else
-                {
-                    txtMarca.Text = dr.GetString(1);
-                    txtCodigo.Text = dr.GetString(3);
-                    txtDescricao.Text = dr.GetString(4);
-                    txtValor.Text = dr.GetDouble(2).ToString("C");
-                }
-                conexao.Close();
+                txtMarca.Text = marcaProduto;
+                txtCodigo.Text = codigoProduto;
+                txtDescricao.Text = descricaoProduto;
+                txtValor.Text = valor;
             }
-
-            catch
+            else
             {
-                MessageBox.Show("Erro ao buscar  os dados, certifique-se de preencher os campos corretamente");
+                MessageBox.Show("não foi possivel encontrar o produto!", "Aviso",
+    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtBuscarProduto.Focus();
             }
         }
 
