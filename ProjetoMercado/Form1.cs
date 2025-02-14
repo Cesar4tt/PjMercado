@@ -99,5 +99,10 @@ namespace ProjetoMercado
             frmSobre sobre = new frmSobre();
             sobre.Show();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

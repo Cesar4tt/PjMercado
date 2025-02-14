@@ -108,6 +108,7 @@
             label1.Size = new Size(438, 46);
             label1.TabIndex = 2;
             label1.Text = "EMPÓRIO ALL BLUE";
+            label1.Click += label1_Click;
             // 
             // flowLayoutPanel1
             // 
