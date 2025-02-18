@@ -16,7 +16,7 @@ namespace ProjetoMercado.UserControls
     {
         MySqlCommand comando = new MySqlCommand();
         string SQL;
-        string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password = ; ";
+        string dataSource = "Server=localhost;Database=Mercado_Emporio_Blue;User=root;Password=;";
         MySqlConnection conexao;
 
         public UC_UserCadastro()

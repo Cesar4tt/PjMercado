@@ -29,7 +29,7 @@ public class InteracoesBD
             /* Codigo abaixo cria uma conexão com o banco de dados e prepara o comando SQL para verificar o cargo do funcionário 
              com base no login (txtEmail.Text) e senha (txtSenha.Text) fornecidos no formulário.*/
 
-            MySqlConnection conexao = new MySqlConnection("Server = localhost ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
+            MySqlConnection conexao = new MySqlConnection("Serve =localhost;database=Mercado_Emporio_Blue;User=root;Password=;");
             MySqlCommand comando = new MySqlCommand();
 
             MySqlDataReader dr;
@@ -84,7 +84,7 @@ public class InteracoesBD
             /* Codigo abaixo cria uma conexão com o banco de dados e prepara o comando SQL para verificar o cargo do funcionário 
              com base no login (txtEmail.Text) e senha (txtSenha.Text) fornecidos no formulário.*/
 
-            MySqlConnection conexao = new MySqlConnection("Server = localhost ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
+            MySqlConnection conexao = new MySqlConnection("Server=localhost;database=Mercado_Emporio_Blue;User=root;Password=;");
             MySqlCommand comando = new MySqlCommand();
 
             MySqlDataReader dr;
