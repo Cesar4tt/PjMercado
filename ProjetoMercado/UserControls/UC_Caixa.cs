@@ -19,7 +19,11 @@ namespace ProjetoMercado.UserControls
     public partial class UC_Caixa : UserControl
     {
         double subtotal;
+<<<<<<< HEAD
         string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
+=======
+        string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password = admin;";
+>>>>>>> 895c4322d2da538531c1294f82ce4c7feac48cb3
 
         public object comando { get; private set; }
 
@@ -200,6 +204,61 @@ namespace ProjetoMercado.UserControls
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+=======
+            int quantindade = int.Parse(txtQuantidade.Text);
+            double resultado;
+            double somaItem;
+
+            string descricaoProduto = "";
+            string marcaProduto = "";
+            string codigoProduto = "";
+            string valor = "";
+            double valor1 = Convert.ToDouble(valor);
+
+
+            bool leuBD = InteracoesBD.InstanciaPublica().LerProduto(txtCodigo.Text, dataSource, out descricaoProduto, out marcaProduto, out codigoProduto, out valor);
+           
+
+            if (leuBD)
+            {
+                ListViewItem item = new ListViewItem(marcaProduto);
+
+                item.SubItems.Add(valor.ToString());
+                item.SubItems.Add(codigoProduto);
+                item.SubItems.Add(descricaoProduto);
+                item.SubItems.Add(quantindade.ToString());
+                lsvProdutos.Items.Add(item);
+                lblValoUnitario.Text = valor.ToString();
+
+                resultado = valor1 * quantindade;
+                subtotal = subtotal + resultado;
+                lblSubtotal.Text = subtotal.ToString("C");
+
+                lblNomeProduto.Text = descricaoProduto;
+
+                somaItem =  valor1 * quantindade;
+                lblTotalItem.Text = somaItem.ToString("C");
+
+                txtCodigo.Clear();
+                txtQuantidade.Clear();
+                txtCodigo.Focus();
+            }
+
+            else
+            {
+                MessageBox.Show("não foi possivel encontrar o produto!", "Aviso",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtCodigo.Focus();
+            }
+
+
+            /*
+
+            //try
+            //{
+            //    string CodigoBarras;
+>>>>>>> 895c4322d2da538531c1294f82ce4c7feac48cb3
             int quantindade = int.Parse(txtQuantidade.Text);
             double resultado;
             double somaItem;
@@ -270,10 +329,6 @@ namespace ProjetoMercado.UserControls
 
             
         }
-
-        
-            
-        
 
         private void btnSimRemover_Click(object sender, EventArgs e)
         {
@@ -401,7 +456,7 @@ namespace ProjetoMercado.UserControls
             string sql;
 
 
-            MySqlConnection conexao = new MySqlConnection("Server = localhost; database = Mercado_Emporio_Blue; User ID = root; Password =;");
+            MySqlConnection conexao = new MySqlConnection("dataSource");
 
 
             MySqlCommand comando = new MySqlCommand();
@@ -417,8 +472,6 @@ namespace ProjetoMercado.UserControls
             RowAffect = comando.ExecuteNonQuery();
 
             conexao.Close();
-
-
 
             lsvProdutos.Clear();
             lblValoUnitario.Text = "R$ 0,00";
