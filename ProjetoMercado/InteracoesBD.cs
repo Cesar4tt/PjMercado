@@ -126,7 +126,7 @@ public class InteracoesBD
             comando.CommandText = sql;
 
             dr = comando.ExecuteReader();
-            MessageBox.Show(dataSource);
+            //MessageBox.Show(dataSource);
 
             while (dr.Read())
             {
@@ -135,7 +135,7 @@ public class InteracoesBD
                 codigoProduto = dr.GetString(3);
                 descricaoProduto = dr.GetString(4);
 
-                MessageBox.Show(marcaProduto + valor + codigoProduto + descricaoProduto);
+                //MessageBox.Show(marcaProduto + valor + codigoProduto + descricaoProduto);
             }
 
             conexao.Close();
@@ -152,31 +152,18 @@ public class InteracoesBD
         }
     }
 
-<<<<<<< HEAD
-    public bool LerCodigo (string codigo , string dataSource , out string descricaoProduto, out string marcaProduto, out string codigoProduto, out string valor)
-=======
     public bool LerCodigo(string codigo, string dataSource, out string descricaoProduto, out string marcaProduto, out string codigoProduto, out string valor)
->>>>>>> 895c4322d2da538531c1294f82ce4c7feac48cb3
     {
         descricaoProduto = "";
         marcaProduto = "";
         codigoProduto = "";
-<<<<<<< HEAD
         valor = "";
 
-        //string CodigoBarras;
-       // int quantindade = int.Parse(quantindade);
-       // double resultado;
-        //double somaItem;
+
 
 
         // Esse Código faz a conexão com o banco de Dados
         MySqlConnection conexao = new MySqlConnection("Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
-=======
-  
-        // Esse Código faz a conexão com o banco de Dados
-        MySqlConnection conexao = new MySqlConnection("");
->>>>>>> 895c4322d2da538531c1294f82ce4c7feac48cb3
         MySqlCommand comando = new MySqlCommand();
 
         MySqlDataReader dr;
@@ -191,21 +178,13 @@ public class InteracoesBD
         comando.CommandText = codigoProduto;
 
         dr = comando.ExecuteReader();
-<<<<<<< HEAD
-       // valor = dr.GetDouble(2).ToString("C");
-=======
-        valor = dr.GetDouble(2).ToString("C");
+        // valor = dr.GetDouble(2).ToString("C");
         //double valor1;
->>>>>>> 895c4322d2da538531c1294f82ce4c7feac48cb3
 
         while (dr.Read())
         {
             marcaProduto = dr.GetString(1);
-<<<<<<< HEAD
-            valor = dr.GetDouble(2);
-=======
             valor = dr.GetDouble(2).ToString();
->>>>>>> 895c4322d2da538531c1294f82ce4c7feac48cb3
             codigoProduto = dr.GetString(3);
             descricaoProduto = dr.GetString(4);
 
@@ -214,15 +193,12 @@ public class InteracoesBD
         if (codigo.ToString() == "")
         {
             return false;
-<<<<<<< HEAD
-            
-=======
->>>>>>> 895c4322d2da538531c1294f82ce4c7feac48cb3
         }
         else
         {
             return true;
         }
+
     }
 }
 

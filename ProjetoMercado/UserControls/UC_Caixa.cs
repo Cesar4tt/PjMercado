@@ -19,11 +19,10 @@ namespace ProjetoMercado.UserControls
     public partial class UC_Caixa : UserControl
     {
         double subtotal;
-<<<<<<< HEAD
+
         string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
-=======
-        string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password = admin;";
->>>>>>> 895c4322d2da538531c1294f82ce4c7feac48cb3
+
+
 
         public object comando { get; private set; }
 
@@ -171,12 +170,6 @@ namespace ProjetoMercado.UserControls
             lsvProdutos.Columns.Add("Descricao", 350, HorizontalAlignment.Left);
             lsvProdutos.Columns.Add("Quantidade", 200, HorizontalAlignment.Left);
 
-
-
-
-
-
-
         }
 
         private void btnPagar_Click(object sender, EventArgs e)
@@ -204,24 +197,24 @@ namespace ProjetoMercado.UserControls
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-=======
+
             int quantindade = int.Parse(txtQuantidade.Text);
-            double resultado;
+           double resultado;
             double somaItem;
 
             string descricaoProduto = "";
             string marcaProduto = "";
             string codigoProduto = "";
             string valor = "";
-            double valor1 = Convert.ToDouble(valor);
+           
 
 
             bool leuBD = InteracoesBD.InstanciaPublica().LerProduto(txtCodigo.Text, dataSource, out descricaoProduto, out marcaProduto, out codigoProduto, out valor);
-           
 
             if (leuBD)
             {
+                double valor1 = double.Parse(valor, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
+
                 ListViewItem item = new ListViewItem(marcaProduto);
 
                 item.SubItems.Add(valor.ToString());
@@ -231,13 +224,13 @@ namespace ProjetoMercado.UserControls
                 lsvProdutos.Items.Add(item);
                 lblValoUnitario.Text = valor.ToString();
 
-                resultado = valor1 * quantindade;
-                subtotal = subtotal + resultado;
+                resultado = valor1 * (double)quantindade;
+               subtotal = subtotal + resultado;
                 lblSubtotal.Text = subtotal.ToString("C");
 
                 lblNomeProduto.Text = descricaoProduto;
 
-                somaItem =  valor1 * quantindade;
+                somaItem =  valor1 * (double)quantindade;
                 lblTotalItem.Text = somaItem.ToString("C");
 
                 txtCodigo.Clear();
@@ -253,79 +246,8 @@ namespace ProjetoMercado.UserControls
             }
 
 
-            /*
+        
 
-            //try
-            //{
-            //    string CodigoBarras;
->>>>>>> 895c4322d2da538531c1294f82ce4c7feac48cb3
-            int quantindade = int.Parse(txtQuantidade.Text);
-            double resultado;
-            double somaItem;
-
-            string descricaoProduto = "";
-            string marcaProduto = "";
-            string codigoProduto = "";
-            double valor = 0;
-
-
-            bool leuBD = InteracoesBD.InstanciaPublica().LerProduto(txtCodigo.Text, dataSource, out descricaoProduto, out marcaProduto, out codigoProduto, out valor);
-
-            if (leuBD)
-            {
-                ListViewItem item = new ListViewItem(marcaProduto);
-
-                item.SubItems.Add(valor);
-                item.SubItems.Add(codigoProduto);
-                item.SubItems.Add(descricaoProduto);
-                item.SubItems.Add(quantindade.ToString());
-                lsvProdutos.Items.Add(item);
-                lblValoUnitario.Text = valor;
-
-                resultado = valor * quantindade;
-                subtotal = subtotal + resultado;
-                lblSubtotal.Text = subtotal.ToString("C");
-
-                lblNomeProduto.Text = descricaoProduto;
-
-                somaItem = valor * quantindade;
-                lblTotalItem.Text = somaItem.ToString("C");
-
-                txtCodigo.Clear();
-                txtQuantidade.Clear();
-                txtCodigo.Focus();
-            }
-
-
-
-
-
-            //else
-            //{
-            //    //string BuscarProduto = InteracoesBD.InstanciaPublica().CaixaProduto(txtCodigo.Text);
-
-            //    ListViewItem item = new ListViewItem(dr.GetString(1));
-
-            //    item.SubItems.Add(dr.GetDouble(2).ToString("C"));
-            //    item.SubItems.Add(dr.GetString(3));
-            //    item.SubItems.Add(dr.GetString(4));
-            //    item.SubItems.Add(quantindade.ToString());
-            //    lsvProdutos.Items.Add(item);
-            //    lblValoUnitario.Text = dr.GetDouble(2).ToString("C");
-
-            //    resultado = dr.GetDouble(2) * quantindade;
-            //    subtotal = subtotal + resultado;
-            //    lblSubtotal.Text = subtotal.ToString("C");
-
-            //    lblNomeProduto.Text = dr.GetString(4);
-
-            //    somaItem = dr.GetDouble(2) * quantindade;
-            //    lblTotalItem.Text = somaItem.ToString("C");
-
-            //    txtCodigo.Clear();
-            //    txtQuantidade.Clear();
-            //    txtCodigo.Focus();
-            //}
 
             
         }
