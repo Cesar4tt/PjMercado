@@ -27,7 +27,20 @@ namespace TestProject1
             senha = "4321";
             Assert.AreEqual("nenhum", InteracoesBD.InstanciaPublica().LoginUsuario(login, senha));
 
-      
+            // Teste 4 - senha em branco
+            login = "Lucasalmeida@Emporioallblue";
+            senha = "";
+            Assert.AreEqual("nenhum", InteracoesBD.InstanciaPublica().LoginUsuario(login, senha));
+
+            // Teste 5 Email em branco
+            login = "Lucasalmeida@Emporioallblue";
+            senha = "4321";
+            Assert.AreEqual("nenhum", InteracoesBD.InstanciaPublica().LoginUsuario(login, senha));
+
+            // teste 6 Senha e Email em branco
+            login = "Lucasalmeida@Emporioallblue";
+            senha = "4321";
+            Assert.AreEqual("nenhum", InteracoesBD.InstanciaPublica().LoginUsuario(login, senha));
         }
 
         [TestMethod]
