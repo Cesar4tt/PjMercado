@@ -70,7 +70,7 @@ namespace TestProject1
             string codigoTeste;
             string valorTeste;
 
-            string descricao = "Espoja Bob louça";
+            string descricao = "Espoja Bob louï¿½a";
             string marca = "Nickeloadeon";
             string codigo = "00044";
             string valor ="4.0";
@@ -98,7 +98,7 @@ namespace TestProject1
 
             //Teste #01
 
-            string descricaoProduto = "Feijão Tradicional Carioca Camil 1kg";
+            string descricaoProduto = "Feijï¿½o Tradicional Carioca Camil 1kg";
             string marca = "Camil";
             string codigoProduto = "00002";
             double valor = 7.79;

@@ -6,21 +6,4 @@ using System;
 namespace TesteFuncionario
 {
 
-        [TestClass]
-    public class UnitTest1
-    {
-        [TestMethod]
-        public bool TestExclusaoRegistro()
-        {
-            string mskdCPF;
-
- 
-
-
-
-
-
-
-        }
-    }
 }
