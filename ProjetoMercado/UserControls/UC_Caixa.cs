@@ -19,7 +19,7 @@ namespace ProjetoMercado.UserControls
     public partial class UC_Caixa : UserControl
     {
         double subtotal;
-        string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
+        string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password = admin;";
 
         public object comando { get; private set; }
 
@@ -323,10 +323,6 @@ namespace ProjetoMercado.UserControls
             */
         }
 
-        
-            
-        
-
         private void btnSimRemover_Click(object sender, EventArgs e)
         {
             try
@@ -453,7 +449,7 @@ namespace ProjetoMercado.UserControls
             string sql;
 
 
-            MySqlConnection conexao = new MySqlConnection("Server = localhost; database = Mercado_Emporio_Blue; User ID = root; Password =;");
+            MySqlConnection conexao = new MySqlConnection("dataSource");
 
 
             MySqlCommand comando = new MySqlCommand();
@@ -469,8 +465,6 @@ namespace ProjetoMercado.UserControls
             RowAffect = comando.ExecuteNonQuery();
 
             conexao.Close();
-
-
 
             lsvProdutos.Clear();
             lblValoUnitario.Text = "R$ 0,00";

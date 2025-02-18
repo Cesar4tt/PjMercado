@@ -64,34 +64,23 @@ namespace TestProject1
 
         }
 
-            [TestMethod]
-              public void TestesAdicionarProduto()
-              {
-              
-                string descricaoTeste;
-                string marcaTeste;
-                string codigoTeste;
-                string valorTeste;
+        [TestMethod]
+        public void TestesAdicionarProduto()
+        {
+            string descricaoTeste;
+            string marcaTeste;
+            string codigoTeste;
+            string valorTeste;
 
+            string descricao = "Espoja Bob louça";
+            string marca = "Nickeloadeon";
+            string codigo = "00044";
+            string valor ="4.0";
+            int RowAffect = 1;
 
-                string descricao = "Espoja Bob louça";
-                string marca = "Nickeloadeon";
-                string codigo = "00044";
-                string valor ="4.0";
-                int RowAffect = 1;
+            string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
 
-
-                string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
-
-
-
-
-                Assert.IsTrue(InteracoesBD.InstanciaPublica().CadastroProduto(descricao, codigo, valor, marca, dataSource));
-               
-
-
-
-              }
-
+            Assert.IsTrue(InteracoesBD.InstanciaPublica().CadastroProduto(descricao, codigo, valor, marca, dataSource));
+        }
     }
 }
