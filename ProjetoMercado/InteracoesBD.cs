@@ -4,7 +4,7 @@ using System;
 
 public class InteracoesBD
 {
-    string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =admin;";
+    string dataSource = "Server = localhost; Database = mercado_emporio_blue; User ID = root; Password =admin;";
 
     private static InteracoesBD instanciaInterna;
     public static InteracoesBD InstanciaPublica()
