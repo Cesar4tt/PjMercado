@@ -1,4 +1,8 @@
-﻿using MySql.Data.MySqlClient;
+﻿// Essa classe é muito importante!
+// Nela temos métodos de interação entre o BD e o programa
+// Atualizar com cautela!
+
+using MySql.Data.MySqlClient;
 using ProjetoMercado;
 using System;
 using System.Diagnostics;
