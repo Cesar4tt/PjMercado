@@ -164,6 +164,7 @@
             lsvProdutos.Size = new Size(586, 338);
             lsvProdutos.TabIndex = 78;
             lsvProdutos.UseCompatibleStateImageBehavior = false;
+            lsvProdutos.SelectedIndexChanged += lsvProdutos_SelectedIndexChanged;
             // 
             // panel2
             // 

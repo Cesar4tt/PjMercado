@@ -199,22 +199,22 @@ namespace ProjetoMercado.UserControls
         {
 
             int quantindade = int.Parse(txtQuantidade.Text);
-           double resultado;
+            double resultado;
             double somaItem;
 
             string descricaoProduto = "";
             string marcaProduto = "";
             string codigoProduto = "";
             string valor = "";
-           // double valor1 = Convert.ToDouble(valor);
-           
+            // double valor1 = Convert.ToDouble(valor);
+
 
 
             bool leuBD = InteracoesBD.InstanciaPublica().LerCodigo(txtCodigo.Text, dataSource, out descricaoProduto, out marcaProduto, out codigoProduto, out valor);
 
             if (leuBD)
             {
-               double valor1 = double.Parse(valor, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
+                double valor1 = double.Parse(valor, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
 
                 ListViewItem item = new ListViewItem(marcaProduto);
 
@@ -226,12 +226,12 @@ namespace ProjetoMercado.UserControls
                 lblValoUnitario.Text = valor.ToString();
 
                 resultado = valor1 * (double)quantindade;
-               subtotal = subtotal + resultado;
+                subtotal = subtotal + resultado;
                 lblSubtotal.Text = subtotal.ToString("C");
 
                 lblNomeProduto.Text = descricaoProduto;
 
-                somaItem =  valor1 * (double)quantindade;
+                somaItem = valor1 * (double)quantindade;
                 lblTotalItem.Text = somaItem.ToString("C");
 
                 txtCodigo.Clear();
@@ -247,10 +247,10 @@ namespace ProjetoMercado.UserControls
             }
 
 
-        
 
 
-            
+
+
         }
 
         private void btnSimRemover_Click(object sender, EventArgs e)
@@ -320,60 +320,60 @@ namespace ProjetoMercado.UserControls
 
         private void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
-            
-          
-                double troco = 0;
 
-                int SelecionarFormaPagamento = cmbFormaPagamento.SelectedIndex; //variavel criada para amarzenar o que for escolhido na comboBox.
 
-                switch (SelecionarFormaPagamento) //Switch case criado para cada forma de pagamento disponivel.
-                {
-                    case 0:
+            double troco = 0;
+
+            int SelecionarFormaPagamento = cmbFormaPagamento.SelectedIndex; //variavel criada para amarzenar o que for escolhido na comboBox.
+
+            switch (SelecionarFormaPagamento) //Switch case criado para cada forma de pagamento disponivel.
+            {
+                case 0:
                     double DinheiroRecebido;
-                    
+
                     try
                     {
                         DinheiroRecebido = double.Parse(txtPagamento.Text);
                     }
                     catch
                     {
-                        DinheiroRecebido = 0;                    
+                        DinheiroRecebido = 0;
                     }
 
 
-                        if (DinheiroRecebido < subtotal)
-                        {
-                            MessageBox.Show("Valor menor que o Total da Compra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                       else if (DinheiroRecebido == 0)
-                        {
-                       MessageBox.Show("Informe o valor recebido em dinheiro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                        else
-                        {
-                            troco = DinheiroRecebido - subtotal;
-                            lblTroco.Text = troco.ToString("C");
-                            lblTotalRecebido.Text = DinheiroRecebido.ToString("C");
-                        }
-
-                        break;
-
-                    case 1:
-                        // txtPagamento.Text = "";
-                        lblTotalRecebido.Text = subtotal.ToString("C");
-                        MessageBox.Show("Compra no Credito Aprovada", "Aprovada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                        break;
-
-                    case 2:
-
-                        lblTotalRecebido.Text = subtotal.ToString("C");
-                        MessageBox.Show("Compra no Débito Aprovada", "Aprovada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                  
+                    if (DinheiroRecebido < subtotal)
+                    {
+                        MessageBox.Show("Valor menor que o Total da Compra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (DinheiroRecebido == 0)
+                    {
+                        MessageBox.Show("Informe o valor recebido em dinheiro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        troco = DinheiroRecebido - subtotal;
+                        lblTroco.Text = troco.ToString("C");
+                        lblTotalRecebido.Text = DinheiroRecebido.ToString("C");
+                    }
 
                     break;
-                }
+
+                case 1:
+                    // txtPagamento.Text = "";
+                    lblTotalRecebido.Text = subtotal.ToString("C");
+                    MessageBox.Show("Compra no Credito Aprovada", "Aprovada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    break;
+
+                case 2:
+
+                    lblTotalRecebido.Text = subtotal.ToString("C");
+                    MessageBox.Show("Compra no Débito Aprovada", "Aprovada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    break;
+            }
 
 
             bool AdicionarNotaFiscal = InteracoesBD.InstanciaPublica().CadastroFiscal(mskdNotaFiscal.Text, txtQuantidade.Text, lblSubtotal.Text, lblTotalRecebido.Text, cmbFormaPagamento.Text, lblTroco.Text);
@@ -382,7 +382,7 @@ namespace ProjetoMercado.UserControls
             {
                 MessageBox.Show("Cadastro realizado com sucesso!", "Aviso",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-              
+
             }
             else
             {
@@ -428,6 +428,11 @@ namespace ProjetoMercado.UserControls
         }
 
         private void lblNomeProduto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lsvProdutos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
