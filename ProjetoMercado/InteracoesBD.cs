@@ -4,7 +4,7 @@ using System;
 
 public class InteracoesBD
 {
-    string dataSource = "Server=localhost; Database=mercado_emporio_blue; ID=root; Password=;";
+    string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =admin;";
 
     private static InteracoesBD instanciaInterna;
     public static InteracoesBD InstanciaPublica()
@@ -201,8 +201,8 @@ public class InteracoesBD
 
     }
 
-    public bool CadastroFiscal (string NotaFiscal , string Quantidade , string Subtotal , string TotalRecebido , string FormaPagamento , string Troco)
-    {  
+    public bool CadastroFiscal(string NotaFiscal, string Quantidade, string Subtotal, string TotalRecebido, string FormaPagamento, string Troco)
+    {
 
         int RowAffect = 0;
         string sql;
@@ -226,11 +226,72 @@ public class InteracoesBD
 
         if (RowAffect == 1)
         {
-            return  true;
+            return true;
         }
-        else { 
+        else
+        {
             return false;
         }
     }
-}
+    public class GerenciadorUsuarios
+    {
+        private static GerenciadorUsuarios instanciaInterna;
+        string dataSource = "Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;";
 
+        // Singleton para GerenciadorUsuarios
+        public static GerenciadorUsuarios InstanciaPublica()
+        {
+            if (instanciaInterna == null)
+                instanciaInterna = new GerenciadorUsuarios();
+            return instanciaInterna;
+        }
+
+        public bool AdicionarUsuario(string nome, string cpf, string senha)
+        {
+            try
+            {
+                using (MySqlConnection conexao = new MySqlConnection(dataSource))
+                {
+                    string sql = "INSERT INTO Funcionarios (Nome, CPF, Senha) VALUES (@Nome, @CPF, @Senha)";
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+                    {
+                        comando.Parameters.AddWithValue("@Nome", nome);
+                        comando.Parameters.AddWithValue("@CPF", cpf);
+                        comando.Parameters.AddWithValue("@Senha", senha);
+                        conexao.Open();
+                        return comando.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao adicionar usuário: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool RemoverUsuario(string cpf)
+        {
+            try
+            {
+                using (MySqlConnection conexao = new MySqlConnection(dataSource))
+                {
+                    string sql = "DELETE FROM Funcionarios WHERE CPF = @CPF";
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+                    {
+                        comando.Parameters.AddWithValue("@CPF", cpf);
+                        conexao.Open();
+                        return comando.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao remover usuário: " + ex.Message);
+                return false;
+            }
+        }
+
+        
+    }
+}
