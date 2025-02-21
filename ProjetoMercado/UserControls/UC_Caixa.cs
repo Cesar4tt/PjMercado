@@ -390,6 +390,8 @@ namespace ProjetoMercado.UserControls
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            ListView itemns
+
 
             lsvProdutos.Clear();
             lblValoUnitario.Text = "R$ 0,00";

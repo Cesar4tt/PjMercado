@@ -1,4 +1,6 @@
 using Microsoft.VisualBasic.Logging;
+using MySql.Data.MySqlClient;
+using System.Numerics;
 using System.Text.RegularExpressions;
 
 namespace TestProject1
@@ -98,7 +100,7 @@ namespace TestProject1
 
             //Teste #01
 
-            string descricaoProduto = "Feijão Tradicional Camil 1kg";
+            string descricaoProduto = "Feijão Tradicional Carioca Camil 1kg";
             string marca = "Camil";
             string codigoProduto = "00002";
             double valor = 7.79;
@@ -108,9 +110,36 @@ namespace TestProject1
             Assert.AreEqual(codigoProduto, codigoteste);
             Assert.AreEqual(valor , Convert.ToDouble(valorteste));
 
-            
+            // Teste#02 
 
-           
+            descricaoProduto = "Feijão Tradicional Carioca Camil 1kg";
+            codigo = "00003";
+
+            Assert.AreNotEqual(descricaoProduto, codigo);
+
+            // Teste#03
+
+            // string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
