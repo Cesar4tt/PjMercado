@@ -390,12 +390,15 @@ namespace ProjetoMercado.UserControls
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            ListView itemns
+
 
             lsvProdutos.Clear();
             lblValoUnitario.Text = "R$ 0,00";
             lblTotalItem.Text = "R$ 0,00";
             lblTotalRecebido.Text = "R$ 0,00";
             lblSubtotal.Text = "R$ 0,00";
+            lblTroco.Text = "R$ 0,00";
             lblNomeProduto.Text = "Nome do Produto";
             txtPagamento.Clear();
             cmbFormaPagamento.SelectedIndex = -1;

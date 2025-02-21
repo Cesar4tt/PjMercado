@@ -296,6 +296,7 @@
             // 
             btnAdicionar.BackColor = Color.SpringGreen;
             btnAdicionar.BackgroundImageLayout = ImageLayout.None;
+            btnAdicionar.Cursor = Cursors.Hand;
             btnAdicionar.FlatAppearance.BorderSize = 0;
             btnAdicionar.FlatStyle = FlatStyle.Flat;
             btnAdicionar.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -314,6 +315,7 @@
             // 
             btnAtualizar.BackColor = Color.SpringGreen;
             btnAtualizar.BackgroundImageLayout = ImageLayout.None;
+            btnAtualizar.Cursor = Cursors.Hand;
             btnAtualizar.FlatAppearance.BorderSize = 0;
             btnAtualizar.FlatStyle = FlatStyle.Flat;
             btnAtualizar.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -347,6 +349,7 @@
             // 
             btnRemoverUser.BackColor = Color.SpringGreen;
             btnRemoverUser.BackgroundImageLayout = ImageLayout.None;
+            btnRemoverUser.Cursor = Cursors.Hand;
             btnRemoverUser.FlatAppearance.BorderSize = 0;
             btnRemoverUser.FlatStyle = FlatStyle.Flat;
             btnRemoverUser.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
