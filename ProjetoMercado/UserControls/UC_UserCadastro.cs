@@ -446,7 +446,7 @@ namespace ProjetoMercado.UserControls
                 MessageBox.Show("Cadastro não atualizado!", "Aviso",
                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
+
             conexao.Close();
         }
 
