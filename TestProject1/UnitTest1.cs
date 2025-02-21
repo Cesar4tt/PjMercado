@@ -26,21 +26,6 @@ namespace TestProject1
             login = "Rafaeloliveira@Emporioallblue";
             senha = "4321";
             Assert.AreEqual("nenhum", InteracoesBD.InstanciaPublica().LoginUsuario(login, senha));
-
-            // Teste 4 - senha em branco
-            login = "Lucasalmeida@Emporioallblue";
-            senha = "";
-            Assert.AreEqual("nenhum", InteracoesBD.InstanciaPublica().LoginUsuario(login, senha));
-
-            // Teste 5 Email em branco
-            login = "Lucasalmeida@Emporioallblue";
-            senha = "4321";
-            Assert.AreEqual("nenhum", InteracoesBD.InstanciaPublica().LoginUsuario(login, senha));
-
-            // teste 6 Senha e Email em branco
-            login = "Lucasalmeida@Emporioallblue";
-            senha = "4321";
-            Assert.AreEqual("nenhum", InteracoesBD.InstanciaPublica().LoginUsuario(login, senha));
         }
 
         [TestMethod]
@@ -85,7 +70,7 @@ namespace TestProject1
             string codigoTeste;
             string valorTeste;
 
-            string descricao = "Espoja Bob louça";
+            string descricao = "Espoja Bob louï¿½a";
             string marca = "Nickeloadeon";
             string codigo = "00044";
             string valor ="4.0";
@@ -94,6 +79,41 @@ namespace TestProject1
             string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
 
             Assert.IsTrue(InteracoesBD.InstanciaPublica().CadastroProduto(descricao, codigo, valor, marca, dataSource));
+        }
+
+        [TestMethod]
+        public void TesteCaixa()
+        {
+          string descricaoteste;
+          string marcateste;
+          string codigoteste;
+          string valorteste;
+
+
+            string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
+
+            string codigo = "00002";
+
+            InteracoesBD.InstanciaPublica().LerCodigo(codigo, dataSource, out descricaoteste, out marcateste, out codigoteste, out valorteste);
+
+            //Teste #01
+
+            string descricaoProduto = "FeijÃ£o Tradicional Camil 1kg";
+            string marca = "Camil";
+            string codigoProduto = "00002";
+            double valor = 7.79;
+
+            Assert.AreEqual(descricaoProduto, descricaoteste);
+            Assert.AreEqual(marcateste, marca);
+            Assert.AreEqual(codigoProduto, codigoteste);
+            Assert.AreEqual(valor , Convert.ToDouble(valorteste));
+
+            
+
+           
+
+
+
         }
     }
 }

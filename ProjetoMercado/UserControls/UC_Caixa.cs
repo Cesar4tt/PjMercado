@@ -206,14 +206,15 @@ namespace ProjetoMercado.UserControls
             string marcaProduto = "";
             string codigoProduto = "";
             string valor = "";
+           // double valor1 = Convert.ToDouble(valor);
            
 
 
-            bool leuBD = InteracoesBD.InstanciaPublica().LerProduto(txtCodigo.Text, dataSource, out descricaoProduto, out marcaProduto, out codigoProduto, out valor);
+            bool leuBD = InteracoesBD.InstanciaPublica().LerCodigo(txtCodigo.Text, dataSource, out descricaoProduto, out marcaProduto, out codigoProduto, out valor);
 
             if (leuBD)
             {
-                double valor1 = double.Parse(valor, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
+               double valor1 = double.Parse(valor, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
 
                 ListViewItem item = new ListViewItem(marcaProduto);
 
@@ -373,42 +374,35 @@ namespace ProjetoMercado.UserControls
 
                     break;
                 }
-          
-            int RowAffect = 0;
-            string sql;
 
 
-            MySqlConnection conexao = new MySqlConnection("dataSource");
+            bool AdicionarNotaFiscal = InteracoesBD.InstanciaPublica().CadastroFiscal(mskdNotaFiscal.Text, txtQuantidade.Text, lblSubtotal.Text, lblTotalRecebido.Text, cmbFormaPagamento.Text, lblTroco.Text);
 
+            if (AdicionarNotaFiscal == true)
+            {
+                MessageBox.Show("Cadastro realizado com sucesso!", "Aviso",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+              
+            }
+            else
+            {
+                MessageBox.Show("Cadastro não realizado!", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
-            MySqlCommand comando = new MySqlCommand();
-
-
-            sql = "INSERT INTO Nota_Fiscal (CPF, Quantidade, Valor_Compra, Valor_Pago, Forma_Pagamento, Troco) VALUES ('" + mskdNotaFiscal.Text + "','" + txtQuantidade.Text + "','" + lblSubtotal.Text + "','" + lblTotalRecebido.Text + "','" + cmbFormaPagamento.Text + "','" + lblTroco.Text + "')";
-
-            conexao.Open();
-            comando.Connection = conexao;
-
-            comando.CommandText = sql;
-
-            RowAffect = comando.ExecuteNonQuery();
-
-            conexao.Close();
 
             lsvProdutos.Clear();
             lblValoUnitario.Text = "R$ 0,00";
             lblTotalItem.Text = "R$ 0,00";
             lblTotalRecebido.Text = "R$ 0,00";
             lblSubtotal.Text = "R$ 0,00";
+            lblTroco.Text = "R$ 0,00";
             lblNomeProduto.Text = "Nome do Produto";
             txtPagamento.Clear();
             cmbFormaPagamento.SelectedIndex = -1;
             checkNotaFiscal.Checked = false;
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
+            btnAbrirCupom.Enabled = true;
+            mskdNotaFiscal.Clear();
 
         }
 

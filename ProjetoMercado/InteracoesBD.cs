@@ -200,5 +200,37 @@ public class InteracoesBD
         }
 
     }
+
+    public bool CadastroFiscal (string NotaFiscal , string Quantidade , string Subtotal , string TotalRecebido , string FormaPagamento , string Troco)
+    {  
+
+        int RowAffect = 0;
+        string sql;
+
+
+        MySqlConnection conexao = new MySqlConnection("Server = 127.0.0.1 ; database = Mercado_Emporio_Blue; User Id = root ; Password = ;");
+        MySqlCommand comando = new MySqlCommand();
+
+
+
+        sql = "INSERT INTO Nota_Fiscal (CPF, Quantidade, Valor_Compra, Valor_Pago, Forma_Pagamento, Troco) VALUES ('" + NotaFiscal + "','" + Quantidade + "','" + Subtotal + "','" + TotalRecebido + "','" + FormaPagamento + "','" + Troco + "')";
+
+        conexao.Open();
+        comando.Connection = conexao;
+
+        comando.CommandText = sql;
+
+        RowAffect = comando.ExecuteNonQuery();
+
+        conexao.Close();
+
+        if (RowAffect == 1)
+        {
+            return  true;
+        }
+        else { 
+            return false;
+        }
+    }
 }
 
