@@ -98,7 +98,7 @@ namespace TestProject1
 
             //Teste #01
 
-            string descricaoProduto = "Feij�o Tradicional Carioca Camil 1kg";
+            string descricaoProduto = "Feijão Tradicional Camil 1kg";
             string marca = "Camil";
             string codigoProduto = "00002";
             double valor = 7.79;
@@ -108,7 +108,9 @@ namespace TestProject1
             Assert.AreEqual(codigoProduto, codigoteste);
             Assert.AreEqual(valor , Convert.ToDouble(valorteste));
 
-            // Assert.AreNotEqual(descricaoProduto, codigoProduto);
+            
+
+           
 
 
 
