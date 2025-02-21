@@ -1,5 +1,6 @@
 using Microsoft.VisualBasic.Logging;
 using System.Text.RegularExpressions;
+using static InteracoesBD;
 
 namespace TestProject1
 {
@@ -73,7 +74,7 @@ namespace TestProject1
             string descricao = "Espoja Bob lou�a";
             string marca = "Nickeloadeon";
             string codigo = "00044";
-            string valor ="4.0";
+            string valor = "4.0";
             int RowAffect = 1;
 
             string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
@@ -84,10 +85,10 @@ namespace TestProject1
         [TestMethod]
         public void TesteCaixa()
         {
-          string descricaoteste;
-          string marcateste;
-          string codigoteste;
-          string valorteste;
+            string descricaoteste;
+            string marcateste;
+            string codigoteste;
+            string valorteste;
 
 
             string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
@@ -106,14 +107,28 @@ namespace TestProject1
             Assert.AreEqual(descricaoProduto, descricaoteste);
             Assert.AreEqual(marcateste, marca);
             Assert.AreEqual(codigoProduto, codigoteste);
-            Assert.AreEqual(valor , Convert.ToDouble(valorteste));
-
-            
-
-           
-
-
-
+            Assert.AreEqual(valor, Convert.ToDouble(valorteste));
         }
+        [TestMethod]
+        public void TestesAdicionarUsuario()
+        {
+            string nome = "Teste Usuario"; string email = "teste@teste.com"; string senha = "123456";
+
+            bool resultado = GerenciadorUsuarios.InstanciaPublica().AdicionarUsuario(nome, email, senha);
+            Assert.IsTrue(resultado);
+        }
+
+        [TestMethod]
+        public void TestesRemoverUsuario()
+        {
+            string email = "teste@teste.com";
+
+            bool resultado = GerenciadorUsuarios.InstanciaPublica().RemoverUsuario(email);
+            Assert.IsTrue(resultado);
+        }
+
+        
     }
+    
 }
+ 

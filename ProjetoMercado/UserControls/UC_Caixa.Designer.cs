@@ -209,7 +209,6 @@
             label5.Size = new Size(116, 18);
             label5.TabIndex = 87;
             label5.Text = "NOTA FISCAL";
-            label5.Click += label5_Click;
             // 
             // checkNotaFiscal
             // 
