@@ -109,9 +109,9 @@ namespace TestProject1
             Assert.AreEqual(descricaoProduto, descricaoteste);
             Assert.AreEqual(marcateste, marca);
             Assert.AreEqual(codigoProduto, codigoteste);
-<<<<<<< HEAD
+
             Assert.AreEqual(valor, Convert.ToDouble(valorteste));
-=======
+
             Assert.AreEqual(valor , Convert.ToDouble(valorteste));
 
             // Teste#02 
@@ -125,29 +125,6 @@ namespace TestProject1
 
             // string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> b54c3376468f07ee5587bc62102b3c57810eec32
         }
         [TestMethod]
         public void TestesAdicionarUsuario()

@@ -4,8 +4,6 @@ using System;
 
 public class InteracoesBD
 {
-    string dataSource = "Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =admin;";
-
     private static InteracoesBD instanciaInterna;
     public static InteracoesBD InstanciaPublica()
     {
@@ -29,7 +27,7 @@ public class InteracoesBD
             /* Codigo abaixo cria uma conexão com o banco de dados e prepara o comando SQL para verificar o cargo do funcionário 
              com base no login (txtEmail.Text) e senha (txtSenha.Text) fornecidos no formulário.*/
 
-            MySqlConnection conexao = new MySqlConnection("dataSource");
+            MySqlConnection conexao = new MySqlConnection("Server = localhost; Database = Mercado_Emporio_Blue; User ID = root; Password =;");
             MySqlCommand comando = new MySqlCommand();
 
             MySqlDataReader dr;

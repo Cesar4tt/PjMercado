@@ -390,7 +390,7 @@ namespace ProjetoMercado.UserControls
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            ListView itemns
+            ListView itemns;
 
 
             lsvProdutos.Clear();
