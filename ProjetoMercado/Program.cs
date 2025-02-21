@@ -1,3 +1,4 @@
+//Comentário
 namespace ProjetoMercado
 {
     internal static class Program
